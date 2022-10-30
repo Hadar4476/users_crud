@@ -20,6 +20,8 @@
 
 <style lang="scss" scoped>
   .modal-wrapper {
+    position: fixed;
+
     .backdrop {
       position: fixed;
       z-index: 100;

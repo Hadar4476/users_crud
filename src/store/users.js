@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const types = {
   INIT_USERS: "INIT_USERS",
   EDIT_USER: "EDIT_USER",
@@ -15,8 +17,32 @@ const getters = {
 };
 
 const mutations = {
-  [types.INIT_USERS](state, payload) {
-    state.users = payload;
+  async [types.INIT_USERS](state, payload) {
+    const { results } = (
+      await axios.get("https://randomuser.me/api/?results=10")
+    ).data;
+
+    if (results && results.length) {
+      const mappedUsers = results.map((u) => {
+        const _id = u.login.uuid;
+        const fullname = `${u.name.title} ${u.name.first} ${u.name.last}`;
+        const location = {
+          country: u.location.country,
+          city: u.location.city,
+          street: u.location.street.name,
+        };
+
+        return {
+          _id,
+          name: fullname,
+          email: u.email,
+          image: u.picture.medium,
+          location,
+        };
+      });
+
+      state.users = mappedUsers;
+    }
   },
   [types.EDIT_USER](state, payload) {
     const userIndex = state.users.findIndex((u) => u._id === payload._id);

@@ -32,6 +32,13 @@
     computed: {
       ...mapGetters({ users: "getUsers" }),
     },
+    watch: {
+      async value(val) {
+        if (!val && this.users.length !== 10) {
+          await this.initUsers();
+        }
+      },
+    },
     methods: {
       ...mapActions(["initUsers", "searchUsers"]),
       onInputChange({ target }) {
@@ -54,6 +61,7 @@
     gap: 10px;
     width: calc(100% - 30px);
     margin: 0 auto;
+    max-width: 680px;
 
     .custom-text-input {
       flex: 1;
