@@ -1,29 +1,6 @@
-# test
+How tu run:
 
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+1. Copy the following command in the terminal to clone the project "git clone https://github.com/Hadar4476/users_crud.git".
+2. Navigate to "users_crud" folder.
+3. In that folder, run the command "npm install" to install node modules.
+4. After installation is complete, run "npm run dev" to run the project.
