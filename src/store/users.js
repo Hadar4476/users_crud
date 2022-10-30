@@ -2,15 +2,15 @@ const types = {
   INIT_USERS: "INIT_USERS",
   EDIT_USER: "EDIT_USER",
   ADD_USER: "ADD_USER",
-  DELETE_USER: "DELETE_USER"
+  DELETE_USER: "DELETE_USER",
 };
 
 const state = {
-  users: []
+  users: [],
 };
 
 const getters = {
-  getUsers: state => state.users
+  getUsers: (state) => state.users,
 };
 
 const mutations = {
@@ -18,18 +18,17 @@ const mutations = {
     state.users = payload;
   },
   [types.EDIT_USER](state, payload) {
-    const userIndex = state.users.findIndex(u => u._id === payload._id);
-
+    const userIndex = state.users.findIndex((u) => u._id === payload._id);
     state.users[userIndex] = payload;
   },
   [types.ADD_USER](state, payload) {
     state.users.push(payload);
   },
   [types.DELETE_USER](state, payload) {
-    const userIndex = state.users.findIndex(u => u._id === payload);
+    const userIndex = state.users.findIndex((u) => u._id === payload);
 
     state.users.splice(userIndex, 1);
-  }
+  },
 };
 
 const actions = {
@@ -44,12 +43,12 @@ const actions = {
   },
   deleteUser({ commit }, userId) {
     commit(types.DELETE_USER, userId);
-  }
+  },
 };
 
 export default {
   state,
   getters,
   mutations,
-  actions
+  actions,
 };
