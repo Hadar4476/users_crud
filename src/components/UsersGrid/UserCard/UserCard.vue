@@ -5,9 +5,7 @@
       <button class="delete" @click="emitDelete">Delete</button>
     </div>
     <div class="information">
-      <div v-if="user.image" class="image">
-        <img :src="user.image" :alt="user.name" />
-      </div>
+      <img v-if="user.image" class="image" :src="user.image" :alt="user.name" />
       <div class="details">
         <span class="name">{{ user.name }}</span>
         <span class="email">{{ user.email }}</span>
@@ -80,6 +78,7 @@
       gap: 10px;
 
       .image {
+        border-radius: 100%;
       }
 
       .details {
