@@ -3,6 +3,7 @@ const types = {
   EDIT_USER: "EDIT_USER",
   ADD_USER: "ADD_USER",
   DELETE_USER: "DELETE_USER",
+  SEARCH_USERS: "SEARCH_USERS",
 };
 
 const state = {
@@ -19,6 +20,7 @@ const mutations = {
   },
   [types.EDIT_USER](state, payload) {
     const userIndex = state.users.findIndex((u) => u._id === payload._id);
+
     state.users[userIndex] = payload;
   },
   [types.ADD_USER](state, payload) {
@@ -28,6 +30,18 @@ const mutations = {
     const userIndex = state.users.findIndex((u) => u._id === payload);
 
     state.users.splice(userIndex, 1);
+  },
+  [types.SEARCH_USERS](state, payload) {
+    state.users = state.users.filter((u) => {
+      return (
+        u.email.toLowerCase().includes(payload) ||
+        u.name.toLowerCase().includes(payload) ||
+        u._id.startsWith(payload) ||
+        Object.keys(u.location).some((k) =>
+          u.location[k].toLowerCase().includes(payload)
+        )
+      );
+    });
   },
 };
 
@@ -39,10 +53,13 @@ const actions = {
     commit(types.EDIT_USER, user);
   },
   addUser({ commit }, user) {
-    commit(types.INIT_USERS, user);
+    commit(types.ADD_USER, user);
   },
   deleteUser({ commit }, userId) {
     commit(types.DELETE_USER, userId);
+  },
+  searchUsers({ commit }, value) {
+    commit(types.SEARCH_USERS, value);
   },
 };
 

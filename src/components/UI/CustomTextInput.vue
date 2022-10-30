@@ -1,6 +1,8 @@
 <template>
   <div :class="{ 'custom-text-input': true, 'input-error': inputError }">
-    <label :for="inputId || inputName">{{ inputLabel }}:</label>
+    <label v-if="inputLabel" :for="inputId || inputName"
+      >{{ inputLabel }}:</label
+    >
     <input
       :id="inputId || inputName"
       :name="inputName"
@@ -46,4 +48,34 @@
   };
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+  .custom-text-input {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    label {
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid black;
+    }
+
+    .error {
+      color: red;
+    }
+  }
+
+  .input-error {
+    label {
+      color: red;
+    }
+
+    input {
+      border-color: red;
+    }
+  }
+</style>
